@@ -7,7 +7,11 @@ export class HttpService {
       const response = await axios.get<T>(url);
       return success(response.data);
     } catch (error) {
-      return failure(`GET request failed: ${url}`, "HttpService.get", error);
+      return failure({
+        errorMessage: `GET request failed: ${url}`,
+        code: "HttpService.get",
+        context: error,
+      });
     }
   }
 }

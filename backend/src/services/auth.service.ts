@@ -19,13 +19,19 @@ export class AuthService {
     const jwtSecret = this.environmentService.getJwtSecret();
 
     if (!jwtSecret) {
-      return failure("JWT_SECRET is not configured", "AuthService.login");
+      return failure({
+        errorMessage: "JWT_SECRET is not configured",
+        code: "AuthService.login",
+      });
     }
 
     const user = this.userService.findByUsername(username);
 
     if (!user || user.password !== password) {
-      return failure("Invalid credentials", "AuthService.login");
+      return failure({
+        errorMessage: "Invalid credentials",
+        code: "AuthService.login",
+      });
     }
 
     const token = jwt.sign({ username, name: user.name }, jwtSecret, {

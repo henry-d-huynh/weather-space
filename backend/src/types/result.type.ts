@@ -16,10 +16,14 @@ export function success<T>(data: T): SuccessResult<T> {
   return { success: true, data };
 }
 
-export function failure(
-  errorMessage: string,
-  code: string,
-  context?: unknown,
-): FailureResult {
+export function failure({
+  errorMessage,
+  code,
+  context,
+}: {
+  errorMessage: string;
+  code: string;
+  context?: unknown;
+}): FailureResult {
   return { success: false, code, errorMessage, context };
 }
