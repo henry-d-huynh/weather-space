@@ -4,6 +4,7 @@ export const currentWeatherSchema = z.object({
   temperature_2m: z.number(),
   wind_speed_10m: z.number(),
   weather_code: z.number(),
+  is_day: z.number(),
 });
 
 export const weatherResponseSchema = z.object({
