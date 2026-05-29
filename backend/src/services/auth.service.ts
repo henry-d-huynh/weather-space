@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { Result, success, failure } from "../types/result.type";
 import { EnvironmentService } from "./environment.service";
 import { UserService } from "./user.service";
-import { JWT_EXPIRY } from "../config";
+import { JWT_EXPIRY } from "../constants/jwt.constant";
 
 export type LoginData = {
   name: string;
