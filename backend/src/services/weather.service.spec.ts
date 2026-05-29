@@ -82,7 +82,7 @@ describe("WeatherService", () => {
         windSpeed: unknownWeatherResponse.current.wind_speed_10m,
         weatherCode: unknownWeatherResponse.current.weather_code,
         description:
-          weatherCodes[unknownWeatherResponse.current.weather_code].label,
+          weatherCodes[unknownWeatherResponse.current.weather_code]?.label,
         isDay: unknownWeatherResponse.current.is_day === 1,
       };
 

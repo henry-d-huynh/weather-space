@@ -43,7 +43,7 @@ export class WeatherService {
       temperature: current.temperature_2m,
       windSpeed: current.wind_speed_10m,
       weatherCode: current.weather_code,
-      description: weatherCodes[current.weather_code].label,
+      description: weatherCodes[current.weather_code]?.label,
       isDay: current.is_day === 1,
     });
   }

@@ -1,3 +1,8 @@
 {
-  "name": "weather-space"
+  "name": "weather-space",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel run dev",
+    "test": "pnpm --recursive run test"
+  }
 }
