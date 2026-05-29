@@ -5,6 +5,7 @@ export type SuccessResult<T> = {
 
 export type FailureResult = {
   success: false;
+  code: string;
   error: string;
 };
 
@@ -14,6 +15,6 @@ export function success<T>(data: T): SuccessResult<T> {
   return { success: true, data };
 }
 
-export function failure(error: string): FailureResult {
-  return { success: false, error };
+export function failure(error: string, code: string): FailureResult {
+  return { success: false, code, error };
 }
