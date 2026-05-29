@@ -1,10 +1,6 @@
-export type User = {
-  password: string;
-  name: string;
-};
+import { User } from "./types/user.type";
 
-export const JWT_SECRET = process.env.JWT_SECRET;
-export const JWT_EXPIRES_IN = "8h";
+export const JWT_EXPIRY = "8h";
 
 export const USERS: Record<string, User> = {
   admin: { password: "password123", name: "Admin" },
