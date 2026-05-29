@@ -1,0 +1,13 @@
+{
+  "name": "weather-space",
+  "version": "1.0.0",
+  "description": "Coding Challenge for Nura Space, building a simple weather application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
