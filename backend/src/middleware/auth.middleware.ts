@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { EnvironmentService } from "../services/environment.service";
 import { authPayloadSchema } from "../types/auth-payload.type";
-import jwt from "jsonwebtoken";
+import { verifyToken } from "../utility/jwt.utility";
 
 export class AuthMiddleware {
   constructor(private readonly environmentService: EnvironmentService) {}
@@ -22,19 +22,21 @@ export class AuthMiddleware {
       return;
     }
 
-    try {
-      const decoded = jwt.verify(token, jwtSecret);
-      const parseResult = authPayloadSchema.safeParse(decoded);
+    const verifyResult = verifyToken(token, jwtSecret);
 
-      if (!parseResult.success) {
-        response.status(401).json({ error: "Invalid token payload" });
-        return;
-      }
-
-      request.user = parseResult.data;
-      next();
-    } catch {
-      response.status(401).json({ error: "Invalid or expired token" });
+    if (!verifyResult.success) {
+      response.status(401).json({ error: verifyResult.errorMessage });
+      return;
     }
+
+    const parseResult = authPayloadSchema.safeParse(verifyResult.data);
+
+    if (!parseResult.success) {
+      response.status(401).json({ error: "Invalid token payload" });
+      return;
+    }
+
+    request.user = parseResult.data;
+    next();
   }
 }
