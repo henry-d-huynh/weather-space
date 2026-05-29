@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { EnvironmentService } from "../services/environment.service";
-import { authPayloadSchema } from "../types/auth-payload.type";
+import { authPayloadSchema } from "@weather-space/shared";
 import { verifyToken } from "../utility/jwt.utility";
 
 export class AuthMiddleware {

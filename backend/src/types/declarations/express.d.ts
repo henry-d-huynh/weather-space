@@ -1,4 +1,4 @@
-import { AuthPayload } from "../auth-payload.type";
+import { AuthPayload } from "@weather-space/shared";
 
 declare global {
   namespace Express {

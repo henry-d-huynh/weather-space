@@ -1,4 +1,4 @@
-import { authPayloadSchema } from "../types/auth-payload.type";
+import { authPayloadSchema } from "@weather-space/shared";
 import { AppWebSocket } from "../types/websocket-message.type";
 import { EnvironmentService } from "../services/environment.service";
 import { verifyToken } from "../utility/jwt.utility";
