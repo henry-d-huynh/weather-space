@@ -1,6 +1,10 @@
 import { WebSocketServer, WebSocket } from "ws";
 import { Server } from "http";
-import { AppWebSocket, ClientMessage } from "../types/websocket-message.type";
+import {
+  AppWebSocket,
+  ClientMessageSchema,
+  isAppWebSocket,
+} from "../types/websocket-message.type";
 import { WebSocketAuthHandler } from "./websocket-auth.handler";
 import { WebSocketSubscriptionHandler } from "./websocket-subscription.handler";
 
@@ -37,23 +41,28 @@ export class WebSocketServerService {
   broadcastToCity(city: string, message: string): number {
     if (!this.webSocketServer) return 0;
 
-    let count = 0;
-    this.webSocketServer.clients.forEach((client) => {
-      const appWebSocket = client as AppWebSocket;
-      if (
-        appWebSocket.readyState === WebSocket.OPEN &&
-        appWebSocket.city?.toLowerCase() === city.toLowerCase()
-      ) {
-        appWebSocket.send(JSON.stringify({ type: "alert", message, city }));
-        count++;
-      }
-    });
-    return count;
+    const targets = Array.from(this.webSocketServer.clients).filter(
+      (client): client is AppWebSocket => {
+        if (!isAppWebSocket(client)) return false;
+        if (client.readyState !== WebSocket.OPEN) return false;
+        return client.city?.toLowerCase() === city.toLowerCase();
+      },
+    );
+
+    targets.forEach((client) =>
+      client.send(JSON.stringify({ type: "alert", message, city })),
+    );
+
+    return targets.length;
   }
 
   private handleMessage(appWebSocket: AppWebSocket, data: string): void {
     try {
-      const message = JSON.parse(data) as ClientMessage;
+      const result = ClientMessageSchema.safeParse(JSON.parse(data));
+
+      if (!result.success) return;
+
+      const message = result.data;
 
       if (message.type === "auth") {
         this.authHandler.handle(appWebSocket, message.token);
@@ -70,10 +79,10 @@ export class WebSocketServerService {
 
     const interval = setInterval(() => {
       this.webSocketServer!.clients.forEach((client) => {
-        const appWebSocket = client as AppWebSocket;
-        if (!appWebSocket.isAlive) return appWebSocket.terminate();
-        appWebSocket.isAlive = false;
-        appWebSocket.ping();
+        if (!isAppWebSocket(client)) return;
+        if (!client.isAlive) return client.terminate();
+        client.isAlive = false;
+        client.ping();
       });
     }, 30_000);
 

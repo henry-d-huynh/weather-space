@@ -1,5 +1,6 @@
 import { AuthPayload } from "./auth-payload.type";
 import { WebSocket } from "ws";
+import { z } from "zod";
 
 export type AppWebSocket = WebSocket & {
   city: string | null;
@@ -7,12 +8,11 @@ export type AppWebSocket = WebSocket & {
   isAlive: boolean;
 };
 
-export type ClientMessage =
-  | { type: "auth"; token: string }
-  | { type: "subscribe"; city: string };
+export function isAppWebSocket(ws: WebSocket): ws is AppWebSocket {
+  return "isAlive" in ws;
+}
 
-export type ServerMessage =
-  | { type: "auth"; status: "ok" }
-  | { type: "auth"; status: "error"; error: string }
-  | { type: "subscribed"; city: string }
-  | { type: "alert"; message: string; city: string };
+export const ClientMessageSchema = z.discriminatedUnion("type", [
+  z.object({ type: z.literal("auth"), token: z.string() }),
+  z.object({ type: z.literal("subscribe"), city: z.string() }),
+]);

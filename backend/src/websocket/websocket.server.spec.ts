@@ -99,7 +99,7 @@ describe("WebSocketServerService", () => {
       expect(mockSubscriptionHandler.handle).not.toHaveBeenCalled();
     });
 
-    it("should ignore malformed messages", () => {
+    it("should ignore malformed JSON", () => {
       const service = new WebSocketServerService(
         mockAuthHandler,
         mockSubscriptionHandler,
@@ -109,6 +109,85 @@ describe("WebSocketServerService", () => {
       expect(() =>
         service["handleMessage"](appWebSocket, "invalid json"),
       ).not.toThrow();
+    });
+
+    it("should ignore valid JSON with an invalid message shape", () => {
+      const service = new WebSocketServerService(
+        mockAuthHandler,
+        mockSubscriptionHandler,
+      );
+      const appWebSocket = mockAppWebSocket();
+
+      service["handleMessage"](
+        appWebSocket,
+        JSON.stringify({ type: "unknown" }),
+      );
+
+      expect(mockAuthHandler.handle).not.toHaveBeenCalled();
+      expect(mockSubscriptionHandler.handle).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("broadcastToCity", () => {
+    const makeService = (clients: object[]) => {
+      const service = new WebSocketServerService(
+        mockAuthHandler,
+        mockSubscriptionHandler,
+      );
+      service["webSocketServer"] = { clients: new Set(clients) } as any;
+      return service;
+    };
+
+    it("should send to matching clients and return the count", () => {
+      const client = mockAppWebSocket("Melbourne");
+      const service = makeService([client]);
+
+      const count = service.broadcastToCity("Melbourne", "Storm warning");
+
+      expect(client.send).toHaveBeenCalledWith(
+        JSON.stringify({ type: "alert", message: "Storm warning", city: "Melbourne" }),
+      );
+      expect(count).toBe(1);
+    });
+
+    it("should be case-insensitive when matching city", () => {
+      const client = mockAppWebSocket("melbourne");
+      const service = makeService([client]);
+
+      const count = service.broadcastToCity("Melbourne", "Storm warning");
+
+      expect(count).toBe(1);
+    });
+
+    it("should skip clients in a different city", () => {
+      const client = mockAppWebSocket("Sydney");
+      const service = makeService([client]);
+
+      const count = service.broadcastToCity("Melbourne", "Storm warning");
+
+      expect(client.send).not.toHaveBeenCalled();
+      expect(count).toBe(0);
+    });
+
+    it("should skip clients that are not AppWebSocket instances", () => {
+      const plainClient = { readyState: WebSocket.OPEN, send: vi.fn() };
+      const service = makeService([plainClient]);
+
+      const count = service.broadcastToCity("Melbourne", "Storm warning");
+
+      expect(plainClient.send).not.toHaveBeenCalled();
+      expect(count).toBe(0);
+    });
+
+    it("should return 0 when server is not initialized", () => {
+      const service = new WebSocketServerService(
+        mockAuthHandler,
+        mockSubscriptionHandler,
+      );
+
+      const count = service.broadcastToCity("Melbourne", "Storm warning");
+
+      expect(count).toBe(0);
     });
   });
 });
