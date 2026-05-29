@@ -52,7 +52,7 @@ describe("AuthService", () => {
       const result = authService.login(mockUserName, mockUser.password);
 
       assertFailureResult(result);
-      expect(result.error).toBe("JWT_SECRET is not configured");
+      expect(result.errorMessage).toBe("JWT_SECRET is not configured");
       expect(result.code).toBe("AuthService.login");
     });
 
@@ -67,7 +67,7 @@ describe("AuthService", () => {
       const result = authService.login("admin", "wrongpassword");
 
       assertFailureResult(result);
-      expect(result.error).toBe("Invalid credentials");
+      expect(result.errorMessage).toBe("Invalid credentials");
       expect(result.code).toBe("AuthService.login");
     });
 
@@ -82,7 +82,7 @@ describe("AuthService", () => {
       const result = authService.login("unknown", "password123");
 
       assertFailureResult(result);
-      expect(result.error).toBe("Invalid credentials");
+      expect(result.errorMessage).toBe("Invalid credentials");
       expect(result.code).toBe("AuthService.login");
     });
   });
