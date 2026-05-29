@@ -10,6 +10,9 @@ importers:
 
   backend:
     dependencies:
+      '@weather-space/shared':
+        specifier: workspace:*
+        version: link:../packages/shared
       axios:
         specifier: ^1.16.1
         version: 1.16.1

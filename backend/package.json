@@ -25,6 +25,7 @@
     "vitest": "^4.1.7"
   },
   "dependencies": {
+    "@weather-space/shared": "workspace:*",
     "axios": "^1.16.1",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
