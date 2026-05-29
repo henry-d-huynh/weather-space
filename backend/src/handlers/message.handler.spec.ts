@@ -3,8 +3,10 @@ import { MessageService } from "../services/message.service";
 import { mock, when, instance, reset, anything } from "ts-mockito";
 import { Message } from "../types/message.type";
 import { toIsoDate } from "../utility/iso-date.utility";
+import { WebSocketServerService } from "../websocket/websocket.server";
 
 const mockMessageService = mock(MessageService);
+const mockWebSocketService = mock<WebSocketServerService>();
 
 const mockCity = "Melbourne";
 const mockMessageText = "Storm warning issued";
@@ -34,7 +36,10 @@ describe("MessageHandler", () => {
         data: mockMessage,
       });
 
-      const handler = new MessageHandler(instance(mockMessageService));
+      const handler = new MessageHandler(
+        instance(mockMessageService),
+        instance(mockWebSocketService),
+      );
       const request = mockRequest({ city: mockCity, message: mockMessageText });
       const response = mockResponse();
 
@@ -45,7 +50,10 @@ describe("MessageHandler", () => {
     });
 
     it("should return 400 when city is missing", () => {
-      const handler = new MessageHandler(instance(mockMessageService));
+      const handler = new MessageHandler(
+        instance(mockMessageService),
+        instance(mockWebSocketService),
+      );
       const request = mockRequest({ message: mockMessageText });
       const response = mockResponse();
 
@@ -55,7 +63,10 @@ describe("MessageHandler", () => {
     });
 
     it("should return 400 when message is missing", () => {
-      const handler = new MessageHandler(instance(mockMessageService));
+      const handler = new MessageHandler(
+        instance(mockMessageService),
+        instance(mockWebSocketService),
+      );
       const request = mockRequest({ city: mockCity });
       const response = mockResponse();
 
@@ -65,7 +76,10 @@ describe("MessageHandler", () => {
     });
 
     it("should return 400 when body is empty", () => {
-      const handler = new MessageHandler(instance(mockMessageService));
+      const handler = new MessageHandler(
+        instance(mockMessageService),
+        instance(mockWebSocketService),
+      );
       const request = mockRequest({});
       const response = mockResponse();
 
@@ -81,7 +95,10 @@ describe("MessageHandler", () => {
         code: "MessageService.addMessage",
       });
 
-      const handler = new MessageHandler(instance(mockMessageService));
+      const handler = new MessageHandler(
+        instance(mockMessageService),
+        instance(mockWebSocketService),
+      );
       const request = mockRequest({ city: mockCity, message: mockMessageText });
       const response = mockResponse();
 
