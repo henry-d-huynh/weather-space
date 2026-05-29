@@ -1,4 +1,4 @@
-import { FailureResult, Result, SuccessResult } from "../types/result.type";
+import { FailureResult, Result, SuccessResult } from "@weather-space/shared";
 
 export function assertSuccessResult<T>(
   result: Result<T>,

@@ -1,4 +1,4 @@
-import { Result, success, failure } from "../types/result.type";
+import { Result, success, failure } from "@weather-space/shared";
 import { geoResponseSchema, GeoResponse } from "../types/geo.type";
 import {
   weatherResponseSchema,

@@ -1,4 +1,4 @@
-import { Result, success, failure } from "../types/result.type";
+import { Result, success, failure } from "@weather-space/shared";
 import { Message } from "@weather-space/shared";
 import { toIsoDate } from "../utility/iso-date.utility";
 

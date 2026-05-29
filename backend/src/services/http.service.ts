@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Result, success, failure } from "../types/result.type";
+import { Result, success, failure } from "@weather-space/shared";
 
 export class HttpService {
   async get<T>(url: string): Promise<Result<T>> {

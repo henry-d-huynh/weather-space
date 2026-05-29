@@ -1,5 +1,5 @@
 import { verify, JwtPayload } from "jsonwebtoken";
-import { Result, success, failure } from "../types/result.type";
+import { Result, success, failure } from "@weather-space/shared";
 
 export function verifyToken(
   token: string,

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { Result, success, failure } from "../types/result.type";
+import { Result, success, failure } from "@weather-space/shared";
 import { EnvironmentService } from "./environment.service";
 import { UserService } from "./user.service";
 import { JWT_EXPIRY } from "../constants/jwt.constant";
