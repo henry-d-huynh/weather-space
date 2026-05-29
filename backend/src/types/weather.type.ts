@@ -11,7 +11,6 @@ export const weatherResponseSchema = z.object({
   current: currentWeatherSchema,
 });
 
-export type CurrentWeather = z.infer<typeof currentWeatherSchema>;
 export type WeatherResponse = z.infer<typeof weatherResponseSchema>;
 
 export type WeatherData = {
@@ -20,6 +19,6 @@ export type WeatherData = {
   temperature: number;
   windSpeed: number;
   weatherCode: number;
-  description: string;
+  description: string | undefined;
   isDay: boolean;
 };
