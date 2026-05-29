@@ -6,11 +6,16 @@ import { HttpService } from "../services/http.service";
 import { MessageService } from "../services/message.service";
 
 export const createEnvironmentService = () => new EnvironmentService();
+
 export const createUserService = () => new UserService();
+
 export const createHttpService = () => new HttpService();
+
 export const createMessageService = () => new MessageService();
+
 export const createWeatherService = (httpService: HttpService) =>
   new WeatherService(httpService);
+
 export const createAuthService = (
   environmentService: EnvironmentService,
   userService: UserService,
