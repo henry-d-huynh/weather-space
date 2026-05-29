@@ -1,5 +1,4 @@
-import { Result, success, failure } from "@weather-space/shared";
-import { Message } from "@weather-space/shared";
+import { failure, Message, Result, success } from "@weather-space/shared";
 import { toIsoDate } from "../utility/iso-date.utility";
 
 export class MessageService {
