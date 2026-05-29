@@ -1,4 +1,4 @@
-import { IsoDate } from "../types/iso-date.type";
+import { IsoDate } from "@weather-space/shared";
 
 export function toIsoDate(date: Date): IsoDate {
   return {

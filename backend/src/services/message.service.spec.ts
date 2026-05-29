@@ -3,7 +3,7 @@ import {
   assertSuccessResult,
   assertFailureResult,
 } from "../utility/test-helper.utility";
-import { Message } from "../types/message.type";
+import { Message } from "@weather-space/shared";
 
 const mockCity = "Melbourne";
 const mockMessage = "Storm warning issued";

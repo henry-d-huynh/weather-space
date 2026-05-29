@@ -1,5 +1,5 @@
 import { Result, success, failure } from "../types/result.type";
-import { Message } from "../types/message.type";
+import { Message } from "@weather-space/shared";
 import { toIsoDate } from "../utility/iso-date.utility";
 
 export class MessageService {

@@ -1,7 +1,7 @@
 import { MessageHandler } from "./message.handler";
 import { MessageService } from "../services/message.service";
 import { mock, when, instance, reset, anything } from "ts-mockito";
-import { Message } from "../types/message.type";
+import { Message } from "@weather-space/shared";
 import { toIsoDate } from "../utility/iso-date.utility";
 import { WebSocketServerService } from "../websocket/websocket.server";
 
