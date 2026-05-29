@@ -2,7 +2,7 @@ import { WeatherHandler } from "./weather.handler";
 import { WeatherService } from "../services/weather.service";
 import { mock, when, instance, reset, anything } from "ts-mockito";
 import { WeatherData } from "../types/weather.type";
-import { weatherDescriptions } from "../constants/weather-descriptions.constant";
+import { weatherCodes } from "@weather-space/shared";
 
 const mockWeatherService = mock(WeatherService);
 
@@ -14,7 +14,7 @@ const mockWeatherData: WeatherData = {
   temperature: 18.5,
   windSpeed: 12.3,
   weatherCode: 2,
-  description: weatherDescriptions[2],
+  description: weatherCodes[2].label,
   isDay: true,
 };
 

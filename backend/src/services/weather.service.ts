@@ -5,7 +5,7 @@ import {
   WeatherData,
   WeatherResponse,
 } from "../types/weather.type";
-import { weatherDescriptions } from "../constants/weather-descriptions.constant";
+import { weatherCodes } from "@weather-space/shared";
 import { HttpService } from "./http.service";
 
 export class WeatherService {
@@ -41,7 +41,7 @@ export class WeatherService {
       temperature: current.temperature_2m,
       windSpeed: current.wind_speed_10m,
       weatherCode: current.weather_code,
-      description: weatherDescriptions[current.weather_code],
+      description: weatherCodes[current.weather_code].label,
       isDay: current.is_day === 1,
     });
   }

@@ -6,6 +6,7 @@ export type WeatherCodeEntry = {
   tone: WeatherTone;
 };
 
+// https://open-meteo.com/en/docs#weather_variable_documentation
 export const weatherCodes: Record<number, WeatherCodeEntry> = {
   0: { label: "Clear sky", icon: "sun", tone: "clear" },
   1: { label: "Mainly clear", icon: "sun-cloud", tone: "clear" },

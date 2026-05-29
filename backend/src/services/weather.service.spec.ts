@@ -6,7 +6,7 @@ import {
   assertFailureResult,
 } from "../utility/test-helper.utility";
 import { WeatherData } from "../types/weather.type";
-import { weatherDescriptions } from "../constants/weather-descriptions.constant";
+import { weatherCodes } from "@weather-space/shared";
 
 const mockGeoResponseResult = {
   name: "Melbourne",
@@ -51,7 +51,7 @@ describe("WeatherService", () => {
         windSpeed: mockWeatherResponse.current.wind_speed_10m,
         weatherCode: mockWeatherResponse.current.weather_code,
         description:
-          weatherDescriptions[mockWeatherResponse.current.weather_code],
+          weatherCodes[mockWeatherResponse.current.weather_code].label,
         isDay: mockWeatherResponse.current.is_day === 1,
       };
 
@@ -83,7 +83,7 @@ describe("WeatherService", () => {
         windSpeed: unknownWeatherResponse.current.wind_speed_10m,
         weatherCode: unknownWeatherResponse.current.weather_code,
         description:
-          weatherDescriptions[unknownWeatherResponse.current.weather_code],
+          weatherCodes[unknownWeatherResponse.current.weather_code].label,
         isDay: unknownWeatherResponse.current.is_day === 1,
       };
 
