@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
-import { JWT_SECRET, JWT_EXPIRES_IN, USERS } from "../config";
 import { Result, success, failure } from "../types/result.type";
+import { EnvironmentService } from "./environment.service";
+import { UserService } from "./user.service";
+import { JWT_EXPIRY } from "../config";
 
 export type LoginData = {
   name: string;
@@ -8,19 +10,26 @@ export type LoginData = {
 };
 
 export class AuthService {
+  constructor(
+    private readonly environmentService: EnvironmentService,
+    private readonly userService: UserService,
+  ) {}
+
   login(username: string, password: string): Result<LoginData> {
-    if (!JWT_SECRET) {
-      return failure("JWT_SECRET is not configured");
+    const jwtSecret = this.environmentService.getJwtSecret();
+
+    if (!jwtSecret) {
+      return failure("JWT_SECRET is not configured", "AuthService.login");
     }
 
-    const user = USERS[username];
+    const user = this.userService.findByUsername(username);
 
     if (!user || user.password !== password) {
-      return failure("Invalid credentials");
+      return failure("Invalid credentials", "AuthService.login");
     }
 
-    const token = jwt.sign({ username, name: user.name }, JWT_SECRET, {
-      expiresIn: JWT_EXPIRES_IN,
+    const token = jwt.sign({ username, name: user.name }, jwtSecret, {
+      expiresIn: JWT_EXPIRY,
     });
 
     return success({ token, name: user.name });
