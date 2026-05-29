@@ -1,8 +1,7 @@
 import { WeatherHandler } from "./weather.handler";
 import { WeatherService } from "../services/weather.service";
-import { mock, when, instance, reset, anything } from "ts-mockito";
-import { WeatherData } from "../types/weather.type";
-import { weatherCodes } from "@weather-space/shared";
+import { anything, instance, mock, reset, when } from "ts-mockito";
+import { weatherCodes, WeatherData } from "@weather-space/shared";
 
 const mockWeatherService = mock(WeatherService);
 

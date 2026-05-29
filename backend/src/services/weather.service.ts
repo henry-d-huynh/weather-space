@@ -1,11 +1,13 @@
-import { Result, success, failure } from "@weather-space/shared";
-import { geoResponseSchema, GeoResponse } from "../types/geo.type";
 import {
-  weatherResponseSchema,
+  failure,
+  Result,
+  success,
+  weatherCodes,
   WeatherData,
   WeatherResponse,
-} from "../types/weather.type";
-import { weatherCodes } from "@weather-space/shared";
+  weatherResponseSchema,
+} from "@weather-space/shared";
+import { GeoResponse, geoResponseSchema } from "../types/geo.type";
 import { HttpService } from "./http.service";
 
 export class WeatherService {

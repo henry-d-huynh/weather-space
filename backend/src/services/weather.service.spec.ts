@@ -1,12 +1,11 @@
 import { WeatherService } from "./weather.service";
 import { HttpService } from "./http.service";
-import { mock, when, instance, reset, anything } from "ts-mockito";
+import { anything, instance, mock, reset, when } from "ts-mockito";
 import {
-  assertSuccessResult,
   assertFailureResult,
+  assertSuccessResult,
 } from "../utility/test-helper.utility";
-import { WeatherData } from "../types/weather.type";
-import { weatherCodes } from "@weather-space/shared";
+import { weatherCodes, WeatherData } from "@weather-space/shared";
 
 const mockGeoResponseResult = {
   name: "Melbourne",
