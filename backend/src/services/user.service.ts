@@ -1,5 +1,5 @@
-import { USERS } from "../config";
 import { User } from "../types/user.type";
+import { USERS } from "../constants/users.constant";
 
 export class UserService {
   findByUsername(username: string): User | undefined {
