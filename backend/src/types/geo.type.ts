@@ -8,8 +8,7 @@ export const geoResultSchema = z.object({
 });
 
 export const geoResponseSchema = z.object({
-  results: z.array(geoResultSchema).optional(),
+  results: z.array(geoResultSchema),
 });
 
-export type GeoResult = z.infer<typeof geoResultSchema>;
 export type GeoResponse = z.infer<typeof geoResponseSchema>;
