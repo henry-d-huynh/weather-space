@@ -4,9 +4,9 @@ import { weatherSlice } from "./features/weather/store/weather.slice";
 import { LOADABLE_STATUS } from "./types/loadable.type";
 import { useWebSocket } from "./hooks/useWebSocket";
 import { skyTheme, loginSkyTheme } from "./utility/sky-theme.utility";
-import { SkyLayer } from "./components/layout/SkyLayer";
+import { SkyLayer } from "./components/layout/sky-layer";
 import { weatherCodes } from "@weather-space/shared";
-import styles from "./App.module.scss";
+import styles from "./app.module.scss";
 
 export const App = () => {
   const authState = useAppSelector((state) =>

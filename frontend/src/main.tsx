@@ -3,8 +3,8 @@ import { createRoot } from "react-dom/client";
 import "./index.scss";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import { App } from "./App";
-import { Icon } from "./components/common/Icon";
+import { App } from "./app";
+import { Icon } from "./components/common/icon";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
