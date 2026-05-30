@@ -50,7 +50,10 @@ const getAuth = (state: AuthState) => state;
 
 export const authSlice = {
   reducer: slice.reducer,
-  actions: slice.actions,
+  actions: {
+    ...slice.actions,
+    loginThunk,
+  },
   selectors: {
     getAuth,
   },
