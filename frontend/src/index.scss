@@ -9,19 +9,19 @@
   --live-green: #{$live-green};
 
   // Radius
-  --r-sm: #{$r-sm};
-  --r-md: #{$r-md};
-  --r-lg: #{$r-lg};
-  --r-full: #{$r-full};
+  --radius-small: #{$radius-small};
+  --radius-medium: #{$radius-medium};
+  --radius-large: #{$radius-large};
+  --radius-full: #{$radius-full};
 
   // Typography
   --font-display: #{$font-display};
   --font-mono: #{$font-mono};
-  --font-size-xs: #{$font-size-xs};
-  --font-size-sm: #{$font-size-sm};
+  --font-size-xs: #{$font-size-x-small};
+  --font-size-sm: #{$font-size-small};
   --font-size-body: #{$font-size-body};
   --font-size-base: #{$font-size-base};
-  --font-size-lg: #{$font-size-lg};
+  --font-size-lg: #{$font-size-large};
 
   // Spacing
   --space-1: #{$space-1};
@@ -48,4 +48,17 @@
   --transition-pop: #{$transition-pop};
   --transition-toast: #{$transition-toast};
   --toast-duration: #{$toast-duration};
+
+  // Dynamic sky theme variables — overwritten at runtime by sky-theme.utility.ts
+  --sky-top: #2f7fd1;
+  --sky-bottom: #a6d2f2;
+  --ink: rgba(15, 22, 33, 0.93);
+  --ink-soft: rgba(15, 22, 33, 0.62);
+  --ink-faint: rgba(15, 22, 33, 0.40);
+  --hair: rgba(15, 22, 33, 0.14);
+  --panel: rgba(255, 255, 255, 0.44);
+  --panel-2: rgba(255, 255, 255, 0.66);
+  --panel-border: rgba(255, 255, 255, 0.76);
+  --on-ink: #fbfdff;
+  --elevation-shadow: 0 22px 54px rgba(20, 40, 80, 0.20);
 }

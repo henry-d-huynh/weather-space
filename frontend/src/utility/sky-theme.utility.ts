@@ -35,7 +35,7 @@ const darkInk = {
   "--panel-2": "rgba(255,255,255,0.14)",
   "--panel-border": "rgba(255,255,255,0.20)",
   "--on-ink": "#10151f",
-  "--elev": "0 22px 54px rgba(0,0,0,0.40)",
+  "--elevation-shadow": "0 22px 54px rgba(0,0,0,0.40)",
 };
 
 const lightInk = {
@@ -47,7 +47,7 @@ const lightInk = {
   "--panel-2": "rgba(255,255,255,0.66)",
   "--panel-border": "rgba(255,255,255,0.76)",
   "--on-ink": "#fbfdff",
-  "--elev": "0 22px 54px rgba(20,40,80,0.20)",
+  "--elevation-shadow": "0 22px 54px rgba(20,40,80,0.20)",
 };
 
 export function skyTheme(tone: WeatherTone, isDay: boolean): SkyTheme {

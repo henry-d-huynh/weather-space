@@ -4,20 +4,20 @@ $alert: #ff5a44;
 $live-green: #39d98a;
 
 // Radius
-$r-sm: 6px;
-$r-md: 12px;
-$r-lg: 20px;
-$r-full: 999px;
+$radius-small: 6px;
+$radius-medium: 12px;
+$radius-large: 20px;
+$radius-full: 999px;
 
 // Typography
 $font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
 $font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-$font-size-xs: 0.6875rem;   // 11px
-$font-size-sm: 0.75rem;     // 12px
+$font-size-x-small: 0.6875rem;   // 11px
+$font-size-small: 0.75rem;     // 12px
 $font-size-body: 0.9375rem; // 15px
 $font-size-base: 1rem;      // 16px
-$font-size-lg: 1.125rem;    // 18px
+$font-size-large: 1.125rem;    // 18px
 
 // Spacing (4px base scale)
 $space-1: 4px;
