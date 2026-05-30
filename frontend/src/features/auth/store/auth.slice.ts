@@ -9,7 +9,7 @@ import { authService } from "../services/auth.service";
 type AuthState = Loadable<AuthenticatedUser>;
 
 const initialState: AuthState = {
-  status: LOADABLE_STATUS.LOADING,
+  status: LOADABLE_STATUS.IDLE,
 };
 
 export const loginThunk = createAsyncThunk<AuthenticatedUser, LoginCredentials>(

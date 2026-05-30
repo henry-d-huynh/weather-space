@@ -1,8 +1,13 @@
 export const LOADABLE_STATUS = {
+  IDLE: "IDLE",
   LOADING: "LOADING",
   LOADED: "LOADED",
   ERROR: "ERROR",
 } as const;
+
+type LoadableIdle = {
+  status: typeof LOADABLE_STATUS.IDLE;
+};
 
 type LoadableLoading = {
   status: typeof LOADABLE_STATUS.LOADING;
@@ -18,4 +23,8 @@ type LoadableError = {
   error: string | undefined;
 };
 
-export type Loadable<T> = LoadableError | LoadableLoading | LoadableLoaded<T>;
+export type Loadable<T> =
+  | LoadableIdle
+  | LoadableError
+  | LoadableLoading
+  | LoadableLoaded<T>;

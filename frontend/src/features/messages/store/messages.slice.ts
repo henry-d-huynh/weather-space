@@ -17,7 +17,7 @@ const initialState: MessagesState = {
   alerts: [],
   unreadCount: 0,
   sendMessage: {
-    status: LOADABLE_STATUS.LOADING,
+    status: LOADABLE_STATUS.IDLE,
   },
 };
 

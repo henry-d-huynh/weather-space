@@ -15,7 +15,7 @@ type WeatherState = {
 const initialState: WeatherState = {
   selectedCity: "Melbourne", // Realistically we'd be using the user's geolocation using a custom hook
   weatherData: {
-    status: LOADABLE_STATUS.LOADING,
+    status: LOADABLE_STATUS.IDLE,
   },
 };
 
