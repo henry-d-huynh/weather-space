@@ -1,9 +1,14 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.scss";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import { App } from "./App";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <h1>Diabolical</h1>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </StrictMode>,
 );
