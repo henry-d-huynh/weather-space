@@ -1,0 +1,33 @@
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+
+  &-logo {
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-full);
+      background: var(--accent);
+    }
+  }
+
+  &-name {
+    font-family: var(--font-display), sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+}
