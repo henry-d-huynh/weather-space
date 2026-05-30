@@ -11,8 +11,8 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@weather-space/shared": "workspace:*",
     "@reduxjs/toolkit": "^2.12.0",
+    "@weather-space/shared": "workspace:*",
     "axios": "^1.16.1",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
@@ -38,6 +38,7 @@
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
     "vite": "^8.0.12",
+    "vite-plugin-svgr": "^5.2.0",
     "vitest": "^4.1.7"
   }
 }

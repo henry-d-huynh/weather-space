@@ -50,7 +50,7 @@ const generalIcons = import.meta.glob<{
 }>("../../assets/icons/general/*.svg", { eager: true, query: "?react" });
 
 // Normally I would use Fontawesome, but for demo purposes I downloaded the required ones to use instead
-// so you wouldn't have to download your own API key
+// so you wouldn't have to provision your own API key
 const iconMap: Record<IconName, FunctionComponent<SVGProps<SVGSVGElement>>> = {
   // Weather
   cloud: weatherIcons["../../assets/icons/weather/cloud.svg"].default,
