@@ -7,9 +7,10 @@ import {
   assertFailureResult,
   assertSuccessResult,
 } from "../utility/test-helper.utility";
+import { LoginCredentials } from "@weather-space/shared";
 
 const mockJwtSecret = "mock-jwt-secret";
-const mockUserName = "johnSmith";
+const mockUsername = "johnSmith";
 const mockUser: User = {
   name: "John Smith",
   password: "password123",
@@ -34,7 +35,12 @@ describe("AuthService", () => {
         instance(mockUserService),
       );
 
-      const result = authService.login(mockUserName, mockUser.password);
+      const loginCredentials: LoginCredentials = {
+        username: mockUsername,
+        password: mockUser.password,
+      };
+
+      const result = authService.login(loginCredentials);
 
       assertSuccessResult(result);
       expect(result.data.token).toBeDefined();
@@ -49,7 +55,12 @@ describe("AuthService", () => {
         instance(mockUserService),
       );
 
-      const result = authService.login(mockUserName, mockUser.password);
+      const loginCredentials: LoginCredentials = {
+        username: mockUsername,
+        password: mockUser.password,
+      };
+
+      const result = authService.login(loginCredentials);
 
       assertFailureResult(result);
       expect(result.errorMessage).toBe("JWT_SECRET is not configured");
@@ -64,7 +75,12 @@ describe("AuthService", () => {
         instance(mockUserService),
       );
 
-      const result = authService.login("admin", "wrongpassword");
+      const loginCredentials: LoginCredentials = {
+        username: "admin",
+        password: "wrongpassword",
+      };
+
+      const result = authService.login(loginCredentials);
 
       assertFailureResult(result);
       expect(result.errorMessage).toBe("Invalid credentials");
@@ -79,7 +95,12 @@ describe("AuthService", () => {
         instance(mockUserService),
       );
 
-      const result = authService.login("unknown", "password123");
+      const loginCredentials: LoginCredentials = {
+        username: "unknown",
+        password: "password123",
+      };
+
+      const result = authService.login(loginCredentials);
 
       assertFailureResult(result);
       expect(result.errorMessage).toBe("Invalid credentials");

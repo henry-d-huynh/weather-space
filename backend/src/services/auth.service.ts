@@ -1,13 +1,14 @@
 import jwt from "jsonwebtoken";
-import { Result, success, failure } from "@weather-space/shared";
+import {
+  Result,
+  success,
+  failure,
+  LoginData,
+  LoginCredentials,
+} from "@weather-space/shared";
 import { EnvironmentService } from "./environment.service";
 import { UserService } from "./user.service";
 import { JWT_EXPIRY } from "../constants/jwt.constant";
-
-export type LoginData = {
-  name: string;
-  token: string;
-};
 
 export class AuthService {
   constructor(
@@ -15,7 +16,7 @@ export class AuthService {
     private readonly userService: UserService,
   ) {}
 
-  login(username: string, password: string): Result<LoginData> {
+  login({ username, password }: LoginCredentials): Result<LoginData> {
     const jwtSecret = this.environmentService.getJwtSecret();
 
     if (!jwtSecret) {

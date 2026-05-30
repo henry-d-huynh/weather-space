@@ -3,13 +3,12 @@ import { AuthService } from "../services/auth.service";
 import { loginRequestSchema } from "../types/auth-request.type";
 import { LoginData } from "@weather-space/shared";
 
+type LoginResponse = LoginData | { error: string };
+
 export class AuthHandler {
   constructor(private readonly authService: AuthService) {}
 
-  login(
-    request: Request,
-    response: Response<LoginData | { error: string }>,
-  ): void {
+  login(request: Request, response: Response<LoginResponse>): void {
     const parseResult = loginRequestSchema.safeParse(request.body);
 
     if (!parseResult.success) {
@@ -17,8 +16,7 @@ export class AuthHandler {
       return;
     }
 
-    const { username, password } = parseResult.data;
-    const result = this.authService.login(username, password);
+    const result = this.authService.login(parseResult.data);
 
     if (!result.success) {
       response.status(401).json({ error: result.errorMessage });
