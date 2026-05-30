@@ -24,7 +24,7 @@ describe("AuthHandler", () => {
 
   describe("login", () => {
     it("should return 200 with token and name on valid credentials", () => {
-      when(mockAuthService.login(anything(), anything())).thenReturn({
+      when(mockAuthService.login(anything())).thenReturn({
         success: true,
         data: { token: mockToken, name: mockName },
       });
@@ -76,7 +76,7 @@ describe("AuthHandler", () => {
     });
 
     it("should return 401 when credentials are invalid", () => {
-      when(mockAuthService.login(anything(), anything())).thenReturn({
+      when(mockAuthService.login(anything())).thenReturn({
         success: false,
         errorMessage: "Invalid credentials",
         code: "AuthService.login",
