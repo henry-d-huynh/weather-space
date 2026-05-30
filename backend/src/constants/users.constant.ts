@@ -1,6 +1,9 @@
 import { User } from "../types/user.type";
+import { DEMO_ACCOUNTS } from "@weather-space/shared";
 
-export const USERS: Record<string, User> = {
-  admin: { password: "password123", name: "Admin" },
-  demo: { password: "demo456", name: "Demo User" },
-};
+export const USERS: Record<string, User> = Object.fromEntries(
+  DEMO_ACCOUNTS.map(({ username, password, name }) => [
+    username,
+    { password, name },
+  ]),
+);

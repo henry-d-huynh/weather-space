@@ -89,17 +89,13 @@ const iconMap: Record<IconName, FunctionComponent<SVGProps<SVGSVGElement>>> = {
   plus: generalIcons["../../assets/icons/general/plus.svg"].default,
 };
 
-type IconProps = {
+type Props = {
   name: IconName;
   size?: number;
   className?: string;
 };
 
-export const Icon = ({
-  name,
-  size = 20,
-  className,
-}: IconProps): ReactElement => {
+export const Icon = ({ name, size = 20, className }: Props): ReactElement => {
   const SvgIcon = iconMap[name];
   return <SvgIcon width={size} height={size} className={className} />;
 };

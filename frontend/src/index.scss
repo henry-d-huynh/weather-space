@@ -1,6 +1,6 @@
-@use './styles/fonts';
-@use './styles/variables' as *;
-@use './styles/reset';
+@use "./styles/fonts";
+@use "./styles/variables" as *;
+@use "./styles/reset";
 
 :root {
   // Static signal colors
@@ -17,11 +17,11 @@
   // Typography
   --font-display: #{$font-display};
   --font-mono: #{$font-mono};
-  --font-size-xs: #{$font-size-x-small};
-  --font-size-sm: #{$font-size-small};
+  --font-size-x-small: #{$font-size-x-small};
+  --font-size-small: #{$font-size-small};
   --font-size-body: #{$font-size-body};
   --font-size-base: #{$font-size-base};
-  --font-size-lg: #{$font-size-large};
+  --font-size-large: #{$font-size-large};
 
   // Spacing
   --space-1: #{$space-1};
@@ -57,11 +57,11 @@
   --sky-bottom: #a6d2f2;
   --ink: rgba(15, 22, 33, 0.93);
   --ink-soft: rgba(15, 22, 33, 0.62);
-  --ink-faint: rgba(15, 22, 33, 0.40);
+  --ink-faint: rgba(15, 22, 33, 0.4);
   --hair: rgba(15, 22, 33, 0.14);
   --panel: rgba(255, 255, 255, 0.44);
   --panel-2: rgba(255, 255, 255, 0.66);
   --panel-border: rgba(255, 255, 255, 0.76);
   --on-ink: #fbfdff;
-  --elevation-shadow: 0 22px 54px rgba(20, 40, 80, 0.20);
+  --elevation-shadow: 0 22px 54px rgba(20, 40, 80, 0.2);
 }
