@@ -1,11 +1,15 @@
 import { Request, Response } from "express";
 import { AuthService } from "../services/auth.service";
 import { loginRequestSchema } from "../types/auth-request.type";
+import { LoginData } from "@weather-space/shared";
 
 export class AuthHandler {
   constructor(private readonly authService: AuthService) {}
 
-  login(request: Request, response: Response): void {
+  login(
+    request: Request,
+    response: Response<LoginData | { error: string }>,
+  ): void {
     const parseResult = loginRequestSchema.safeParse(request.body);
 
     if (!parseResult.success) {
