@@ -1,4 +1,4 @@
-import type { FunctionComponent, SVGProps } from "react";
+import type { FunctionComponent, ReactElement, SVGProps } from "react";
 
 type WeatherIconName =
   | "cloud"
@@ -95,7 +95,11 @@ type IconProps = {
   className?: string;
 };
 
-export const Icon = ({ name, size = 20, className }: IconProps) => {
+export const Icon = ({
+  name,
+  size = 20,
+  className,
+}: IconProps): ReactElement => {
   const SvgIcon = iconMap[name];
   return <SvgIcon width={size} height={size} className={className} />;
 };

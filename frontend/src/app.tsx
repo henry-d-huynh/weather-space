@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { useAppSelector } from "./store/hooks";
 import { authSlice } from "./features/auth/store/auth.slice";
 import { weatherSlice } from "./features/weather/store/weather.slice";
@@ -7,8 +8,9 @@ import { skyTheme, loginSkyTheme } from "./utility/sky-theme.utility";
 import { SkyLayer } from "./components/layout/sky-layer";
 import { weatherCodes } from "@weather-space/shared";
 import styles from "./app.module.scss";
+import { LoginPage } from "./features/auth/components/login-page";
 
-export const App = () => {
+export const App = (): ReactElement => {
   const authState = useAppSelector((state) =>
     authSlice.selectors.getAuth(state.auth),
   );
@@ -29,7 +31,7 @@ export const App = () => {
       <SkyLayer />
       <div className={styles.content}>
         {authState.status !== LOADABLE_STATUS.LOADED ? (
-          <div>Login page goes here</div>
+          <LoginPage />
         ) : (
           <div>Home page goes here</div>
         )}
