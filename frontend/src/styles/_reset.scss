@@ -14,10 +14,9 @@ html {
 }
 
 body {
-  font-family: $font-family;
-  font-size: $font-size-base;
-  color: $color-text;
-  background-color: $color-background;
+  font-family: $font-display;
+  font-size: $font-size-body;
+  line-height: 1.5;
   min-height: 100vh;
 }
 
@@ -42,6 +41,7 @@ a {
   color: inherit;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
