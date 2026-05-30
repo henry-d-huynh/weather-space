@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authSlice } from "../features/auth/store/auth.slice.ts";
-import { weatherSlice } from "../features/weather/store/weather.slice.ts";
-import { messagesSlice } from "../features/messages/store/messages.slice.ts";
+import { authSlice } from "../features/auth/store/auth.slice";
+import { weatherSlice } from "../features/weather/store/weather.slice";
+import { messagesSlice } from "../features/messages/store/messages.slice";
 
 export const store = configureStore({
   reducer: {

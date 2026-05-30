@@ -1,13 +1,12 @@
-import type { Result } from "@weather-space/shared";
-import { httpService } from "../../../services/http.service.ts";
-
-export type LoginData = {
-  token: string;
-  name: string;
-};
+import type {
+  LoginCredentials,
+  LoginData,
+  Result,
+} from "@weather-space/shared";
+import { httpService } from "../../../services/http.service";
 
 export const authService = {
-  async login(username: string, password: string): Promise<Result<LoginData>> {
-    return httpService.post<LoginData>("/auth/login", { username, password });
+  async login(loginCredentials: LoginCredentials): Promise<Result<LoginData>> {
+    return httpService.post<LoginData>("/auth/login", loginCredentials);
   },
 };

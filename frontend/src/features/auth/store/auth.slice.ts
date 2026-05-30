@@ -1,49 +1,57 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { type Loadable, LOADABLE_STATUS } from "../../../types/loadable.type";
+import type {
+  AuthenticatedUser,
+  LoginCredentials,
+} from "@weather-space/shared";
+import { authService } from "../services/auth.service";
 
-type AuthState = {
-  token: string | undefined;
-  name: string | undefined;
-  username: string | undefined;
-};
+type AuthState = Loadable<AuthenticatedUser>;
 
 const initialState: AuthState = {
-  token: undefined,
-  name: undefined,
-  username: undefined,
+  status: LOADABLE_STATUS.LOADING,
 };
+
+export const loginThunk = createAsyncThunk<AuthenticatedUser, LoginCredentials>(
+  "auth/login",
+  async (loginCredentials: LoginCredentials, { rejectWithValue }) => {
+    const result = await authService.login(loginCredentials);
+    if (!result.success) return rejectWithValue(result.errorMessage);
+    return { ...result.data, username: loginCredentials.username };
+  },
+);
 
 const slice = createSlice({
   name: "auth",
-  initialState,
+  initialState: initialState as AuthState,
   reducers: {
-    login: (
-      state,
-      action: PayloadAction<{ token: string; name: string; username: string }>,
-    ) => {
-      state.token = action.payload.token;
-      state.name = action.payload.name;
-      state.username = action.payload.username;
-    },
-    logout: (state) => {
-      state.token = undefined;
-      state.name = undefined;
-      state.username = undefined;
-    },
+    logout: (): AuthState => ({ status: LOADABLE_STATUS.LOADING }),
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(
+        loginThunk.pending,
+        (): AuthState => ({
+          status: LOADABLE_STATUS.LOADING,
+        }),
+      )
+      .addCase(loginThunk.fulfilled, (_state, action) => ({
+        status: LOADABLE_STATUS.LOADED,
+        data: action.payload,
+      }))
+      .addCase(loginThunk.rejected, (_state, action) => ({
+        status: LOADABLE_STATUS.ERROR,
+        error: action.error.message,
+      }));
   },
 });
 
-const getToken = (state: AuthState) => state.token;
-const getName = (state: AuthState) => state.name;
-const getUsername = (state: AuthState) => state.username;
-const isAuthenticated = (state: AuthState) => state.token !== undefined;
+const getAuth = (state: AuthState) => state;
 
 export const authSlice = {
   reducer: slice.reducer,
   actions: slice.actions,
   selectors: {
-    getToken,
-    getName,
-    getUsername,
-    isAuthenticated,
+    getAuth,
   },
 };
