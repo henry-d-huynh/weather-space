@@ -49,6 +49,10 @@ export const LoginForm = (): ReactElement => {
   const passwordToggleLabel = showPassword ? "HIDE" : "SHOW";
   const submitLabel = isLoading ? "Signing in…" : "Sign in";
 
+  const displayError = error && (
+    <div className={styles.loginFormError}>{error}</div>
+  );
+
   return (
     <form className={styles.loginForm} onSubmit={handleSubmit}>
       <div className={styles.loginFormField}>
@@ -90,7 +94,7 @@ export const LoginForm = (): ReactElement => {
         </div>
       </div>
 
-      {error && <div className={styles.loginFormError}>{error}</div>}
+      {displayError}
 
       <button
         type="submit"
